@@ -17,16 +17,18 @@ interface NavLink {
 
 interface NavbarProps {
   logo: string;
+  logoHref: string;
   links: NavLink[];
   cta: string;
+  ctaHref: string;
 }
 
-export function Navbar({ logo, links, cta }: NavbarProps) {
+export default function Navbar({ logo, logoHref, links, cta, ctaHref }: NavbarProps) {
   return (
-    <header className="w-full border-b border-border">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center">
-          <Image src={logo} alt="" width={120} height={36} className="h-9 w-auto object-contain" />
+        <Link href={logoHref} className="relative block h-9 w-30">
+          <Image src={logo} alt="" fill className="object-contain object-left" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -42,7 +44,7 @@ export function Navbar({ logo, links, cta }: NavbarProps) {
         </nav>
 
         <div className="hidden md:block">
-          <Button>{cta}</Button>
+          <Button nativeButton={false} render={<Link href={ctaHref}>{cta}</Link>} />
         </div>
 
         <Sheet>
@@ -67,7 +69,11 @@ export function Navbar({ logo, links, cta }: NavbarProps) {
                   {link.label}
                 </Link>
               ))}
-              <Button className="w-full">{cta}</Button>
+              <Button
+                className="w-full"
+                nativeButton={false}
+                render={<Link href={ctaHref}>{cta}</Link>}
+              />
             </nav>
           </SheetContent>
         </Sheet>

@@ -1,26 +1,90 @@
 {
   "hero": {
     "file": "src/components/blocks/hero.tsx",
-    "props": ["headline", "subheadline", "cta", "image"]
+    "props": ["headline", "subheadline", "cta", "ctaHref", "image", "imageAlt"]
   },
   "hero-split": {
     "file": "src/components/blocks/hero-split.tsx",
-    "props": ["headline", "subheadline", "cta", "image"]
+    "props": ["headline", "subheadline", "cta", "ctaHref", "image", "imageAlt", "trustBadge"]
+  },
+  "hero-centered": {
+    "file": "src/components/blocks/hero-centered.tsx",
+    "props": ["headline", "subheadline", "primaryCta", "primaryCtaHref", "secondaryCta", "secondaryCtaHref"]
+  },
+  "about-split": {
+    "file": "src/components/blocks/about-split.tsx",
+    "props": ["heading", "body", "image", "imageAlt", "stats"]
+  },
+  "about-values": {
+    "file": "src/components/blocks/about-values.tsx",
+    "props": ["heading", "subheading", "items"]
+  },
+  "about-stats": {
+    "file": "src/components/blocks/about-stats.tsx",
+    "props": ["heading", "items"]
   },
   "services-grid": {
     "file": "src/components/blocks/services-grid.tsx",
     "props": ["heading", "subheading", "items"]
   },
+  "services-alternating": {
+    "file": "src/components/blocks/services-alternating.tsx",
+    "props": ["heading", "items"]
+  },
+  "gallery": {
+    "file": "src/components/blocks/gallery.tsx",
+    "props": ["heading", "subheading", "images"]
+  },
+  "gallery-before-after": {
+    "file": "src/components/blocks/gallery-before-after.tsx",
+    "props": ["heading", "subheading", "pairs"]
+  },
+  "testimonials": {
+    "file": "src/components/blocks/testimonials.tsx",
+    "props": ["heading", "items"]
+  },
+  "reviews-carousel": {
+    "file": "src/components/blocks/reviews-carousel.tsx",
+    "props": ["heading", "items"]
+  },
+  "cta-banner": {
+    "file": "src/components/blocks/cta-banner.tsx",
+    "props": ["heading", "subheading", "cta", "ctaHref"]
+  },
+  "cta-split": {
+    "file": "src/components/blocks/cta-split.tsx",
+    "props": ["heading", "subheading", "cta", "ctaHref", "image", "imageAlt"]
+  },
   "contact-form": {
     "file": "src/components/blocks/contact-form.tsx",
-    "props": ["heading", "subheading", "form_cta"]
+    "props": ["heading", "subheading", "formCta"]
   },
-  "footer-columns": {
-    "file": "src/components/blocks/footer-columns.tsx",
-    "props": ["logo", "links", "blurb"]
+  "contact-map": {
+    "file": "src/components/blocks/contact-map.tsx",
+    "props": ["heading", "address", "phone", "email", "hours", "mapEmbedUrl"]
+  },
+  "stats-counter": {
+    "file": "src/components/blocks/stats-counter.tsx",
+    "props": ["items"]
+  },
+  "service-area-grid": {
+    "file": "src/components/blocks/service-area-grid.tsx",
+    "props": ["heading", "subheading", "areas"]
+  },
+  "trust-badges": {
+    "file": "src/components/blocks/trust-badges.tsx",
+    "props": ["items"]
+  },
+  "image-text-split": {
+    "file": "src/components/blocks/image-text-split.tsx",
+    "props": ["heading", "body", "image", "imageAlt", "imagePosition", "cta", "ctaHref"]
   },
   "navbar": {
     "file": "src/components/blocks/navbar.tsx",
-    "props": ["logo", "links", "cta"]
+    "props": ["logo", "logoHref", "links", "cta", "ctaHref"]
+  },
+  "footer-columns": {
+    "file": "src/components/blocks/footer-columns.tsx",
+    "props": ["logo", "blurb", "columns", "phone", "email", "copyright"]
   }
 }

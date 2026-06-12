@@ -7,23 +7,23 @@ import {
   CardContent,
 } from "@/components/ui/card";
 
-interface ServiceItem {
+interface AboutValueItem {
   icon: string;
   title: string;
   description: string;
 }
 
-interface ServicesGridProps {
+interface AboutValuesProps {
   heading: string;
   subheading: string;
-  items: ServiceItem[];
+  items: AboutValueItem[];
 }
 
-export default function ServicesGrid({
+export default function AboutValues({
   heading,
   subheading,
   items,
-}: ServicesGridProps) {
+}: AboutValuesProps) {
   return (
     <section className="w-full bg-background">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
@@ -35,7 +35,7 @@ export default function ServicesGrid({
             {subheading}
           </p>
         </div>
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
             <Card key={item.title}>
               <CardHeader>

@@ -6,12 +6,12 @@ import { Textarea } from "@/components/ui/textarea";
 interface ContactFormProps {
   heading: string;
   subheading: string;
-  form_cta: string;
+  formCta: string;
 }
 
-export function ContactForm({ heading, subheading, form_cta }: ContactFormProps) {
+export default function ContactForm({ heading, subheading, formCta }: ContactFormProps) {
   return (
-    <section className="w-full">
+    <section className="w-full bg-background">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -33,11 +33,15 @@ export function ContactForm({ heading, subheading, form_cta }: ContactFormProps)
             </div>
           </div>
           <div className="flex flex-col gap-2">
+            <Label htmlFor="phone">Phone</Label>
+            <Input id="phone" name="phone" type="tel" />
+          </div>
+          <div className="flex flex-col gap-2">
             <Label htmlFor="message">Message</Label>
             <Textarea id="message" name="message" rows={5} required />
           </div>
           <Button type="submit" size="lg" className="w-full sm:w-fit">
-            {form_cta}
+            {formCta}
           </Button>
         </form>
       </div>
