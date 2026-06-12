@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "file": "src/components/blocks/hero.tsx",
+    "props": ["headline", "subheadline", "cta", "image"]
+  },
+  "hero-split": {
+    "file": "src/components/blocks/hero-split.tsx",
+    "props": ["headline", "subheadline", "cta", "image"]
+  },
+  "services-grid": {
+    "file": "src/components/blocks/services-grid.tsx",
+    "props": ["heading", "subheading", "items"]
+  },
+  "contact-form": {
+    "file": "src/components/blocks/contact-form.tsx",
+    "props": ["heading", "subheading", "form_cta"]
+  },
+  "footer-columns": {
+    "file": "src/components/blocks/footer-columns.tsx",
+    "props": ["logo", "links", "blurb"]
+  },
+  "navbar": {
+    "file": "src/components/blocks/navbar.tsx",
+    "props": ["logo", "links", "cta"]
+  }
+}
