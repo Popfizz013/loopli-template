@@ -29,7 +29,7 @@ jobs:
       - name: Post result to n8n
         if: always()
         run: |
-          curl -X POST "${{ secrets.N8N_WEBHOOK_URL }}" \
+          curl -X POST "https://liamdegand.app.n8n.cloud/webhook-test/build-result" \
             -H "Content-Type: application/json" \
             -d '{
               "project_id": "${{ github.event.repository.name }}",
