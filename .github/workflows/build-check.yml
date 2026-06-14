@@ -3,8 +3,8 @@ name: Build Check
 on:
   push:
     paths:
-      - 'app/**'
-      - 'components/**'
+      - 'src/app/**'
+      - 'src/components/**'
 
 jobs:
   build:
@@ -28,12 +28,16 @@ jobs:
 
       - name: Post result to n8n
         if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
         run: |
-          curl -X POST "https://liamdegand.app.n8n.cloud/webhook-test/build-result" \
+          PASSED=false
+          if [ "$JOB_STATUS" = "success" ]; then PASSED=true; fi
+          curl -X POST "https://liamdegand.app.n8n.cloud/webhook/build-result" \
             -H "Content-Type: application/json" \
-            -d '{
-              "project_id": "${{ github.event.repository.name }}",
-              "passed": ${{ job.status == 'success' }},
-              "status": "${{ job.status }}",
-              "run_url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }'
+            -d "{
+              \"project_id\": \"${{ github.event.repository.name }}\",
+              \"passed\": $PASSED,
+              \"status\": \"$JOB_STATUS\",
+              \"run_url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
+            }"
