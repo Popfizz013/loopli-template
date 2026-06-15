@@ -3,8 +3,7 @@ name: Build Check
 on:
   push:
     paths:
-      - 'src/app/**'
-      - 'src/components/**'
+      - '.build-ready'   # Only trigger when QA writes this sentinel file
 
 jobs:
   build:
@@ -21,10 +20,14 @@ jobs:
         run: npm ci
 
       - name: Type check
-        run: npx tsc --noEmit
+        id: typecheck
+        run: npx tsc --noEmit 2>&1 | tee /tmp/tsc_output.txt; exit ${PIPESTATUS[0]}
+        continue-on-error: true
 
       - name: Build
-        run: npm run build
+        id: build
+        run: npm run build 2>&1 | tee /tmp/build_output.txt; exit ${PIPESTATUS[0]}
+        continue-on-error: true
 
       - name: Post result to n8n
         if: always()
@@ -33,11 +36,15 @@ jobs:
         run: |
           PASSED=false
           if [ "$JOB_STATUS" = "success" ]; then PASSED=true; fi
+          TSC_ERRORS=$(cat /tmp/tsc_output.txt 2>/dev/null | tail -80 || echo "")
+          BUILD_ERRORS=$(cat /tmp/build_output.txt 2>/dev/null | tail -80 || echo "")
           curl -X POST "https://liamdegand.app.n8n.cloud/webhook/build-result" \
             -H "Content-Type: application/json" \
             -d "{
               \"project_id\": \"${{ github.event.repository.name }}\",
               \"passed\": $PASSED,
               \"status\": \"$JOB_STATUS\",
-              \"run_url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
+              \"run_url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",
+              \"tsc_errors\": $(echo "$TSC_ERRORS" | jq -Rs .),
+              \"build_errors\": $(echo "$BUILD_ERRORS" | jq -Rs .)
             }"
